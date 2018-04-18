@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+  <title><ui:insert name="windowTitle"/></title>
+  <h:outputStylesheet library="css" name="stile.css"/>
+</h:head>
+
+<h:body>
+  
+  <div id="heading">
+    <ui:insert name="heading">
+     <ui:include src="/Template/header.jsf"/>
+    </ui:insert>
+  </div>
+
+   <div id="description">
+    <ui:insert name="description">
+     <ui:include src="/Template/descrizioneCorso.jsf"/>
+    </ui:insert>
+  </div>
+
+  <div id="calendario">
+    <ui:insert name="calentario">
+     <ui:include src="/Template/calendario.jsf"/>
+    </ui:insert>
+  </div>
+
+
+  <div id="sidebarLeft">
+    <ui:insert name="sidebarLeft">
+      <ui:include src="/Template/erogazioni.jsf"/>
+    </ui:insert>
+  </div>
+
+  <div id="content">
+    
+    <ui:insert name="content">
+      <ui:include src="/Template/dettaglioErogazione.jsf"/>
+    </ui:insert>
+
+  </div>
+
+  <ui:debug/>
+
+</h:body>
+</html>

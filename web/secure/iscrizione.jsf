@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <title><ui:insert name="windowTitle"/></title>
+        <h:outputStylesheet library="css" name="stile.css"/>
+    </h:head>
+
+    <h:body>
+        <f:metadata>
+         <ui:param value="/secure/iscrizione.jsf" name="pag"/>
+         <ui:param value="iscrizione" name="pag1"/>
+         <f:event listener="#{login.setPage(pag1)}" type="preRenderView" />
+         <f:event listener="#{logge.controlloLog(pag,login.isLoggedIn())}" type="preRenderView" />
+        </f:metadata>
+        <div id="heading">
+            <ui:insert name="heading">
+                <ui:include src="/Template/header.jsf"/>
+            </ui:insert>
+        </div>
+
+        <div>
+          <h:form>
+        		<h1>La tua matricola è #{login.user},
+            Vuoi iscriverti all erogazione: #{er.erogazioneSelezionato.codice}?</h1>
+        		<table>
+          
+          		<tr>
+            		<td><p><h:commandButton value="si" action="#{isc.iscrivi(er.erogazioneSelezionato.codice, login.user)}"/></p></td>
+            		<td><p><h:commandButton value="no" action="/index.jsf"/></p></td>
+          		</tr>
+        		</table>
+      		</h:form>
+        </div>
+
+        
+    </h:body>
+</html>

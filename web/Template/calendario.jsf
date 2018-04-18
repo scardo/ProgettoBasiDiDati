@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<head><title>IGNORED</title></head>
+
+<body>
+  <ui:composition>
+  <div class="calendario"> 
+  
+    
+    <!--Div filtri-->
+    <div id="filtroEventi">
+    <ui:insert name="filtroEventi">
+      <h:form>
+
+
+        <table style="width:800px">
+        <tr >
+          <td><h1>Calendario</h1></td>
+        </tr>
+
+        <tr>
+        	<td>
+          <p>Tipo:<h:inputText class="areaStileEVT" value="#{evt.tipo}"/></p>
+          </td>
+          <td>
+          <p>Anno:<h:inputText class="areaStileEVT" value="#{evt.anno}"/></p>
+          </td>
+          <td>
+          <p><h:commandButton value="filtra" action="/Template/calendario.jsf"/></p>
+          </td>
+        </tr>
+        </table>
+
+
+      </h:form>
+    </ui:insert>
+    </div>
+
+
+    <!--Div Elenco(dati calendario)-->
+    <div id="elencoEventi">
+    <h:form>
+    <ui:insert name="elencoEventi">
+      <h:dataTable  value="#{evt.getEventi(cs.corso, evt.tipo, evt.anno)}" var="evento" rowClasses="#{evt.colore}">
+        <h:column>
+          <f:facet name="header">Data</f:facet>
+          #{evento.dataS}
+        </h:column>
+        <h:column>
+          <f:facet name="header">Ora</f:facet>
+          #{evento.oraS}
+        </h:column>
+        <h:column>
+          <f:facet name="header">ID Evento</f:facet>
+          #{evento.id}
+        </h:column>
+        <h:column>
+          <f:facet name="header">Erogazione</f:facet>
+          #{evento.codiceErogazione}
+        </h:column>
+        <h:column>
+          <f:facet name="header">Docente</f:facet>
+          #{evt.docenteNC(evento.id)}
+        </h:column>
+      </h:dataTable>
+    </ui:insert>  
+    </h:form>
+    </div>
+  </div>
+</ui:composition>
+
+</body>
+</html>

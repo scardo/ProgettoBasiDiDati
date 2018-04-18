@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+  <title><ui:insert name="windowTitle"/></title>
+  <h:outputStylesheet library="css" name="stile.css"/>
+</h:head>
+
+<h:body>
+  <div id="heading">
+    <ui:insert name="heading">
+     <ui:include src="/Template/header.jsf"/>
+    </ui:insert>
+  </div>
+
+  
+  <div id="sidebarLeft">
+    <ui:insert name="sidebarLeft">
+      <h:form>
+        <h1>Filtri:</h1>
+        <table>
+          <tr>
+            <td>Categoria:</td>
+           	<td><h:inputText class="areaStile" value="#{cs.categoria}"/></td>
+          </tr>
+          <tr>
+            <td>Sottostringa nel nome:</td>
+            <td><h:inputText class="areaStile" value="#{cs.nome}"/></td>
+          </tr>
+          <tr>
+            <td>Programma:</td>
+            <td><h:inputText class="areaStile" value="#{cs.programma}"/></td>
+          </tr>
+          <tr>
+            <td>Numero massimo di studenti:</td>
+            <td><h:inputText class="areaStile" value="#{cs.NMaxStud}"/></td>
+          </tr>
+          <tr>
+            <td>Numero ore di lezione:</td>
+		        <td><h:inputText class="areaStile" value="#{cs.NOreLez}"/></td>
+          </tr>
+          <tr>
+				    <td><p style="align:right"><h:commandButton value="filtra" action="index"/></p></td>
+          </tr>
+        </table>
+      </h:form>
+    </ui:insert>
+  </div>
+
+  <div id="content">   
+    <ui:insert name="content">
+    <h:form>
+      <h1>Corsi di Studio Attivi:</h1>
+        <h:dataTable value="#{cs.getCorsi(cs.categoria, cs.programma, cs.nome, cs.NMaxStud, cs.NOreLez)}" var="c">
+          <h:column>
+            <f:facet name="header">Nome</f:facet>       
+            <h:commandLink
+              value="#{c.nome}"
+              action="#{cs.recuperaCorso( c.nome )}"/>
+          </h:column>
+          <h:column>
+            <f:facet name="header">Categoria</f:facet>
+            #{c.categoria}
+          </h:column>
+          <h:column>
+            <f:facet name="header">Totale ore di lezione</f:facet>
+            #{c.NOreLez}
+          </h:column>
+        </h:dataTable>
+    </h:form>
+    </ui:insert>
+  </div>
+
+  <ui:debug/>
+</h:body>
+</html>

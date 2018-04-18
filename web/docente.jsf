@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+  <title><ui:insert name="windowTitle"/></title>
+  <h:outputStylesheet library="css" name="stile.css"/>
+</h:head>
+
+<h:body>
+  <div id="heading">
+    <ui:insert name="heading">
+     <ui:include src="/Template/header.jsf"/>
+    </ui:insert>
+  </div>
+
+  
+  
+
+  <div id="contentDocente">
+    
+    <ui:insert name="contentDocente">
+    <h:form>
+      <h1>Docente:</h1>
+
+      <h:dataTable value="#{ds.getDocenti(ds.codice,0)}" var="d">
+        <h:column>
+          <f:facet name="header">CF</f:facet>
+         
+          <h:commandLink
+            value="#{d.CF}"
+            action="#{ds.recuperaDocente( d.cf )}"/>
+        </h:column>
+
+        <h:column>
+          <f:facet name="header">Categoria</f:facet>
+           #{c.categoria}
+        </h:column>
+
+        <h:column>
+          <f:facet name="header">Totale ore di lezione</f:facet>
+          #{c.NOreLez}
+        </h:column>
+
+      </h:dataTable>
+
+    </h:form>
+    </ui:insert>
+
+  </div>
+
+  <ui:debug/>
+</h:body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<head><title>IGNORED</title></head>
+<body>
+<ui:composition  template="/Template/corso.jsf">
+<ui:define name="content">
+  <ui:param value="#{er.getErogazioneSelezionato()}" name="erog"/>
+  <h:form>
+  <div>
+  <h1>#{erog.codice}</h1>
+  <ul>
+	  <li><b>Stato</b>: #{erog.stato}</li>
+    <li><b>Data inizio</b>: #{erog.stringDataI}</li>
+    <li><b>Data fine</b>: #{erog.stringDataF}</li>
+	  <h:outputText value="#{erog.postiAv}" escape="false"/>
+  <div>
+    <h1>Docenti:</h1>
+    <h:dataTable value="#{er.getDocenti(erog.codice)}" var="docente" scope="request"> 
+      <h:column>
+        <f:facet name="header">Codice fiscale</f:facet>
+        #{docente.cf}
+      </h:column>
+      <h:column>
+        <f:facet name="header">Nome</f:facet>
+        #{docente.nome}
+      </h:column>
+      <h:column>
+        <f:facet name="header">Cognome</f:facet>
+        #{docente.cognome}
+      </h:column>
+      <h:column>
+        <f:facet name="header">E-Mail</f:facet>
+        #{docente.email}
+      </h:column>
+      <h:column>
+        <f:facet name="header">Telefono</f:facet>
+        #{docente.telefono}
+      </h:column>
+    </h:dataTable>
+  </div>
+  <ui:param value="#{erog.iod}" name="nextPage"/>    
+    #{login.setPage(nextPage)}    
+		<h:commandLink action="#{login.validateUsernamePassword}"><h:outputText value="#{erog.iscORDip}" escape="false"/></h:commandLink>
+  </ul>
+
+  <h:outputLink value="../index.jsf">Lista corsi di studio</h:outputLink>
+  </div>
+  </h:form>
+  </ui:define>
+</ui:composition>
+</body>
+</html>

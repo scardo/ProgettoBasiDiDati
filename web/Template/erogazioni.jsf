@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+<head><title>IGNORED</title></head>
+<body>
+<ui:composition>
+<h:form>
+<div class="sidebarLeft">   
+      <h1>Erogazioni:</h1>
+      <ui:param value="#{cs.getCorso()}" name="c"/>
+      <h1 class="sidebar">Codice Identificativo:</h1>
+      <h:dataTable class="sidebar" value="#{er.getErogazioni(c.nome)}" var="e" scope="request">
+        <h:column>    
+          <h:commandLink
+            value="#{e.codice}"
+            action="#{er.recuperaErogazione( e.codice )}"/>
+        </h:column>
+      </h:dataTable>
+</div>
+</h:form>
+</ui:composition>
+</body>
+</html>

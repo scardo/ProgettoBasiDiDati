@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+<head><title>IGNORED</title></head>
+<body>
+<ui:composition>
+  <ui:param value="#{cs.getCorso()}" name="c"/>
+
+  <div class="description">
+  <ul>
+    <li><b>Nome</b>: #{c.nome}</li>
+    <li><b>Categoria</b>: #{c.categoria}</li>
+    <li><b>Programma</b>: "#{c.programma}"</li>
+    <li><b>Numero massimo di studenti</b>: #{c.NMaxStud}</li>
+    <li><b>Numero di ore di lezione</b>: #{c.NOreLez}</li>
+  </ul>
+  <h:outputLink value="../index.jsf"><p id="linkalign">Ritorna alla lista dei corsi di studio</p></h:outputLink>
+  </div>
+</ui:composition>
+</body>
+</html>
